@@ -5,8 +5,10 @@ function CardLayout({ card }) {
   return (
     <div className="card-body pb-2">
       <h5 className="card-title">{card.front}</h5>
+      <hr></hr>
       <div>
         <p className="card-text pb-2">{card.back}</p>
+        <hr></hr>
         <div
           style={{
             display: "flex",

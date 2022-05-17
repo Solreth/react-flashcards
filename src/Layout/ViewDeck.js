@@ -68,7 +68,7 @@ function ViewDeck() {
         </div>
         <div className="mb-5">
           {deck.cards.map((card) => (
-            <div key={card.id} className="card card-body col-12 container py-2">
+            <div key={card.id} className="card card-body col-8 container py-2">
               <CardLayout card={card} />
             </div>
           ))}
