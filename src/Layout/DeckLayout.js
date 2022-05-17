@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 function DeckLayout({ deck }) {
+  console.log(deck);
   return (
     <div className="card col-12 my-2">
       <div className="card-body">
-        <h5 className="card-title">{deck.name}</h5>
-        <p className="card-text">{deck.description}</p>
+        <div className="navbar">
+          <h5 className="card-title">{deck.name}</h5>
+          <p className="font-italic">{deck.cards.length} cards</p>
+        </div>
+        <p className="card-text navbar">{deck.description}</p>
         <div className="row navbar py-0">
           <div className="row gx-5">
             <Link to={`/decks/${deck.id}`}>
