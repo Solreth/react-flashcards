@@ -4,6 +4,7 @@ import NotFound from "./NotFound";
 import Home from "./Home";
 import { Route, Switch } from "react-router-dom";
 import ViewDeck from "./ViewDeck";
+import StudyDeck from "./StudyDeck";
 function Layout() {
   return (
     <>
@@ -16,7 +17,9 @@ function Layout() {
           <Route exact path="/decks/:deckId">
             <ViewDeck />
           </Route>
-          <Route path="/decks/:deckId/study"></Route>
+          <Route path="/decks/:deckId/study">
+            <StudyDeck />
+          </Route>
           <Route>
             <NotFound />
           </Route>
