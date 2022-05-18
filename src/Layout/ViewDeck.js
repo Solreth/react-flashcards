@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { readDeck } from "../utils/api/index";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import CardLayout from "./CardLayout";
+import { readDeck, deleteDeck } from "../utils/api/index.js";
+
 function ViewDeck() {
   const [deck, setDeck] = useState("");
   const { deckId } = useParams();
+  const history = useHistory();
 
+  async function deleteDeckHandler(id) {
+    const confirm = window.confirm(
+      "Are you sure you wish to release this deck? Its mother will never take it back."
+    );
+    if (confirm) {
+      await deleteDeck(id);
+      history.push("/");
+    }
+  }
   useEffect(() => {
     const abort = new AbortController();
 
@@ -55,13 +66,16 @@ function ViewDeck() {
                   <i className="bi bi-book-half" /> Study
                 </button>
               </Link>
-              <Link to={`/decks/${deck.id}/study`}>
+              <Link to={`/decks/${deck.id}/cards/new`}>
                 <button className="btn btn-primary mx-1">
                   <i className="bi bi-clipboard-plus" /> Add Cards
                 </button>
               </Link>
             </div>
-            <button className="btn btn-danger">
+            <button
+              onClick={() => deleteDeckHandler(deckId)}
+              className="btn btn-danger"
+            >
               <i className="bi bi-trash3-fill" />
             </button>
           </div>

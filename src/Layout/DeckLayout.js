@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function DeckLayout({ deck }) {
-  console.log(deck);
+import { listDecks, deleteDeck } from "../utils/api/index.js";
+
+function DeckLayout({ deck, setDecks }) {
+  async function deleteDeckHandler(id) {
+    const confirm = window.confirm(
+      "Are you sure you wish to release this deck? Its mother will never take it back."
+    );
+    if (confirm) {
+      await deleteDeck(id);
+      const deckData = await listDecks();
+      setDecks(deckData);
+    }
+  }
+
   return (
     <div className="card col-12 my-2">
       <div className="card-body">
@@ -23,7 +35,10 @@ function DeckLayout({ deck }) {
               </button>
             </Link>
           </div>
-          <button className="btn btn-danger">
+          <button
+            onClick={() => deleteDeckHandler(deck.id)}
+            className="btn btn-danger"
+          >
             <i className="bi bi-trash3-fill"></i>
           </button>
         </div>

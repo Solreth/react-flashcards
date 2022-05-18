@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import ViewDeck from "./ViewDeck";
 import StudyDeck from "./StudyDeck";
 import AddDeck from "./AddDeck";
+import AddCard from "./AddCard";
 
 function Layout() {
   const [decks, setDecks] = useState([]);
@@ -19,10 +20,13 @@ function Layout() {
             <Home decks={decks} setDecks={setDecks} />
           </Route>
           <Route path="/decks/new">
-            <AddDeck decks={decks} setDecks={setDecks} />
+            <AddDeck />
           </Route>
           <Route exact path="/decks/:deckId">
-            <ViewDeck />
+            <ViewDeck setDecks={setDecks} />
+          </Route>
+          <Route path="/decks/:deckId/cards/new">
+            <AddCard />
           </Route>
           <Route path="/decks/:deckId/study">
             <StudyDeck />

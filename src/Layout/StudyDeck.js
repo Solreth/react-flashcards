@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { readDeck } from "../utils/api/index";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 function StudyDeck() {
   const [deck, setDeck] = useState("");
   const [flip, setFlip] = useState(false);
   const [count, setCount] = useState(0);
+  const [goBack, setGoBack] = useState(null);
   const { deckId } = useParams();
-
+  const history = useHistory();
   function flipHandler() {
     setFlip(!flip);
   }
 
   function nextHandler() {
     if (count === deck.cards.length - 1) {
-      setCount(0);
-      flipHandler();
+      const confirm = window.confirm(
+        "Do you want to study again? Yeah. I bet you do. Nerd."
+      );
+      if (confirm) {
+        setCount(0);
+        flipHandler();
+      } else {
+        setGoBack(true);
+      }
     } else {
       let newCount = count + 1;
       setCount(newCount);
       flipHandler();
     }
   }
+
+  useEffect(() => {
+    if (goBack) {
+      history.push("/");
+    }
+  }, [history, goBack]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -84,7 +98,7 @@ function StudyDeck() {
         </nav>
         <h1>Study: {deck.name}</h1>
         <div
-          className="card card-body col-12 container py-2"
+          className="card card-body col-12 container py-3 my-5"
           style={{ width: "18rem" }}
         >
           <div className="card-body ">

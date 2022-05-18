@@ -28,7 +28,7 @@ function Home({ decks, setDecks }) {
       </div>
       <div>
         {decks.map((deck) => (
-          <DeckLayout key={deck.id} deck={deck} />
+          <DeckLayout key={deck.id} deck={deck} setDecks={setDecks} />
         ))}
       </div>
     </div>

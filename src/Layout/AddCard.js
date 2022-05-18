@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { listDecks, createDeck } from "../utils/api/index";
 import { Link, useHistory } from "react-router-dom";
-function AddDeck() {
+function AddCard() {
   const initialData = {
     name: "",
     description: "",
@@ -68,6 +68,7 @@ function AddDeck() {
           <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
+          <li className="breadcrumb-item">Create Deck</li>
           <li className="breadcrumb-item active" aria-current="page">
             Create Deck
           </li>
@@ -105,4 +106,4 @@ function AddDeck() {
     </>
   );
 }
-export default AddDeck;
+export default AddCard;
