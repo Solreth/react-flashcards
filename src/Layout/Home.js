@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { listDecks } from "../utils/api/index";
 import DeckLayout from "./DeckLayout";
 
-function Home() {
-  const [decks, setDecks] = useState([]);
+function Home({ decks, setDecks }) {
   useEffect(() => {
     const abort = new AbortController();
 
@@ -18,7 +17,7 @@ function Home() {
     }
     returnDecks();
     return () => abort.abort();
-  }, []);
+  }, [setDecks]);
 
   return (
     <div>
