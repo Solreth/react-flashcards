@@ -8,6 +8,7 @@ function StudyDeck() {
   const [goBack, setGoBack] = useState(null);
   const { deckId } = useParams();
   const history = useHistory();
+
   function flipHandler() {
     setFlip(!flip);
   }
@@ -75,9 +76,11 @@ function StudyDeck() {
           You need at least 3 cards to study. There are {deck.cards.length}{" "}
           cards in this deck.
         </p>
-        <button className="btn btn-primary">
-          <i className="bi bi-clipboard-plus" /> Add Cards
-        </button>
+        <Link to={`/decks/${deck.id}/cards/new`}>
+          <button className="btn btn-primary">
+            <i className="bi bi-clipboard-plus" /> Add Card
+          </button>
+        </Link>
       </>
     );
   } else {

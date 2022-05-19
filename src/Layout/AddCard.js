@@ -1,58 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { listDecks, createDeck } from "../utils/api/index";
-import { Link, useHistory } from "react-router-dom";
-function AddCard() {
-  const initialData = {
-    name: "",
-    description: "",
-  };
+import { readDeck, createCard } from "../utils/api/index";
+import { Link, useParams, useHistory } from "react-router-dom";
 
+function AddCard({ deck, setDeck, decks, setDecks }) {
+  const initialData = {
+    front: "",
+    back: "",
+  };
+  const { deckId } = useParams();
   const [formData, setFormData] = useState(initialData);
   const history = useHistory();
-  const [newDeck, setNewDeck] = useState(null);
-  const [id, setId] = useState(null);
-  const [decks, setDecks] = useState(null);
 
   useEffect(() => {
     const abort = new AbortController();
 
-    async function retrieveDecks() {
+    const getDeck = async () => {
       try {
-        const deckData = await listDecks(abort.signal);
-        setDecks(deckData);
+        const fullDeck = await readDeck(deckId, abort.signal);
+        setDeck(fullDeck);
       } catch (error) {
         console.log(error);
       }
-    }
-    retrieveDecks();
+    };
+    getDeck();
     return () => abort.abort();
-  }, []);
-
-  useEffect(() => {
-    const abort = new AbortController();
-    if (!newDeck) {
-      return;
-    } else {
-      async function postDeck() {
-        try {
-          await createDeck(newDeck, abort.signal);
-          const deckData = await listDecks(abort.signal);
-          setDecks(deckData);
-          history.push(`/decks/${id}`);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      postDeck();
-      return () => abort.abort();
-    }
-  }, [newDeck, setDecks, history, id]);
+  }, [deckId, setDeck]);
 
   function submitHandler(event) {
     event.preventDefault();
-    const uniqueId = decks.slice(-1)[0].id + 1;
-    setId(uniqueId);
-    setNewDeck(formData);
+    createCard(deckId, formData);
+    history.push(`/decks/${deckId}`);
   }
 
   console.log(formData);
@@ -68,38 +45,45 @@ function AddCard() {
           <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
-          <li className="breadcrumb-item">Create Deck</li>
+
+          <li className="breadcrumb-item">
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+          </li>
           <li className="breadcrumb-item active" aria-current="page">
             Create Deck
           </li>
         </ol>
       </nav>
       <form onSubmit={submitHandler} className="container">
-        <h1>Create Deck</h1>
-        <h4 className="mt-3 mb-2">Name</h4>
-        <input
-          type="text"
-          placeholder="Deck Name"
-          name="name"
-          style={{ width: "100%" }}
-          value={formData.name}
-          onChange={changeHandler}
-        />
-        <h4 className="mt-3 mb-2">Description</h4>
+        <div className="row container">
+          <h1>{deck.name}:&nbsp;</h1>
+          <h1>Add Card</h1>
+        </div>
+        <h4 className="mt-3 mb-2">Front</h4>
         <textarea
           rows="4"
           style={{ width: "100%" }}
           type="text"
-          name="description"
-          placeholder="Deck Description"
-          value={formData.description}
+          name="front"
+          placeholder="Front side of card"
+          value={formData.front}
           onChange={changeHandler}
         />
-        <Link to="/">
-          <button className="btn btn-secondary">Cancel</button>
-        </Link>
 
-        <button type="submit" className="btn btn-primary">
+        <h4 className="mt-3 mb-2">Back</h4>
+        <textarea
+          rows="4"
+          style={{ width: "100%" }}
+          type="text"
+          name="back"
+          placeholder="Back side of card"
+          value={formData.back}
+          onChange={changeHandler}
+        />
+        <Link to={`/decks/${deckId}`}>
+          <button className="btn btn-secondary my-2">Cancel</button>
+        </Link>
+        <button type="submit" className="btn btn-primary mx-2">
           Submit
         </button>
       </form>

@@ -1,6 +1,20 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { deleteCard, readDeck } from "../utils/api/index";
 
 function CardLayout({ card }) {
+  const { deckId } = useParams();
+  async function deleteCardHandler(id) {
+    const confirm = window.confirm(
+      "So there is such a thing as a stupid question..."
+    );
+    if (confirm) {
+      await deleteCard(id);
+      await readDeck(deckId);
+      window.location.reload();
+    }
+  }
+
   console.log("Card", card);
   return (
     <div className="card-body pb-2">
@@ -20,7 +34,10 @@ function CardLayout({ card }) {
             <i className="bi bi-pencil" />
             Edit
           </button>
-          <button className="btn btn-danger">
+          <button
+            onClick={() => deleteCardHandler(card.id)}
+            className="btn btn-danger"
+          >
             <i className="bi bi-trash3-fill"></i>
           </button>
         </div>

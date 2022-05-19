@@ -5,6 +5,7 @@ import { readDeck, deleteDeck } from "../utils/api/index.js";
 
 function ViewDeck() {
   const [deck, setDeck] = useState("");
+
   const { deckId } = useParams();
   const history = useHistory();
 
@@ -30,9 +31,7 @@ function ViewDeck() {
     };
     getDeck();
     return () => abort.abort();
-  }, [deckId]);
-
-  console.log(deck);
+  }, [deckId, setDeck]);
 
   if (deck === "") {
     return <div>loading</div>;
@@ -68,7 +67,7 @@ function ViewDeck() {
               </Link>
               <Link to={`/decks/${deck.id}/cards/new`}>
                 <button className="btn btn-primary mx-1">
-                  <i className="bi bi-clipboard-plus" /> Add Cards
+                  <i className="bi bi-clipboard-plus" /> Add Card
                 </button>
               </Link>
             </div>
@@ -80,13 +79,18 @@ function ViewDeck() {
             </button>
           </div>
         </div>
-        <div className="mb-5">
-          {deck.cards.map((card) => (
-            <div key={card.id} className="card card-body col-8 container py-2">
-              <CardLayout card={card} />
-            </div>
-          ))}
-        </div>
+        {
+          <div className="mb-5">
+            {deck.cards.map((card) => (
+              <div
+                key={card.id}
+                className="card card-body col-8 container py-2"
+              >
+                <CardLayout card={card} />
+              </div>
+            ))}
+          </div>
+        }
       </>
     );
   }

@@ -10,6 +10,7 @@ import AddCard from "./AddCard";
 
 function Layout() {
   const [decks, setDecks] = useState([]);
+  const [deck, setDeck] = useState("");
 
   return (
     <>
@@ -26,7 +27,12 @@ function Layout() {
             <ViewDeck setDecks={setDecks} />
           </Route>
           <Route path="/decks/:deckId/cards/new">
-            <AddCard />
+            <AddCard
+              deck={deck}
+              setDeck={setDeck}
+              decks={decks}
+              setDecks={setDecks}
+            />
           </Route>
           <Route path="/decks/:deckId/study">
             <StudyDeck />
