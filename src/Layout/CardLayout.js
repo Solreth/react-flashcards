@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { deleteCard, readDeck } from "../utils/api/index";
 
 function CardLayout({ card }) {
   const { deckId } = useParams();
+
   async function deleteCardHandler(id) {
     const confirm = window.confirm(
       "So there is such a thing as a stupid question..."
@@ -30,10 +31,12 @@ function CardLayout({ card }) {
             height: "2.3em",
           }}
         >
-          <button className="btn btn-secondary ">
-            <i className="bi bi-pencil" />
-            Edit
-          </button>
+          <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
+            <button className="btn btn-secondary ">
+              <i className="bi bi-pencil" />
+              Edit
+            </button>
+          </Link>
           <button
             onClick={() => deleteCardHandler(card.id)}
             className="btn btn-danger"

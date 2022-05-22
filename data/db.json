@@ -11,8 +11,8 @@
       "id": 2
     },
     {
-      "name": "Test Deck",
-      "description": "This deck is for testing dummy!",
+      "name": "React Interview",
+      "description": "This is so meta you guys.",
       "id": 3
     }
   ],
@@ -46,6 +46,78 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
+    },
+    {
+      "front": "What is the airspeed velocity of an unladen Swallow?",
+      "back": "African or European?",
+      "deckId": 1,
+      "id": 6
+    },
+    {
+      "front": "What is React?\n",
+      "back": "React is a free, open-sourced, front-end JavaScript library used for building user interfaces based on UI components\nA great way to create Single Page Applications or SPAs.\nReact creates a VIRTUAL DOM in memory\nInstead of manipulating the browser's DOM directly, React creates a virtual DOM where it does all the necessary manipulating, before making the changes in the browser DOM.\n",
+      "deckId": 3,
+      "id": 7
+    },
+    {
+      "front": "What is a Single Page Application?",
+      "back": "\nAn application with one singular html file\nA web application or website that interacts with the user by dynamically rewriting the current web page with new data from the web server, instead of the default method of a web browser loading entire new pages\nAllows for faster transitions that make the website feel more like a native app\n",
+      "deckId": 3,
+      "id": 8
+    },
+    {
+      "front": "What is a Component?",
+      "back": "\nComponents are independent and reusable bits of code\nThe building blocks of a React app\nUsually inside of a function\nComponents let you split the UI into independent, reusable pieces and think about each piece in isolation\n",
+      "deckId": 3,
+      "id": 9
+    },
+    {
+      "front": "What is JSX?",
+      "back": "\n\tJSX = JAVASCRIPT XML\nJSX is a syntax extension to JavaScript \nJSX allows us to write HTML in React \nJSX converts HTML tags into react elements\nJSX makes it easier to write and add HTML in React\nJSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement()  and/or appendChild() methods\n",
+      "deckId": 3,
+      "id": 10
+    },
+    {
+      "front": "What are Props?\n",
+      "back": "Props are arguments passed into React components.\nProps are passed to components via HTML attributes.\nReact Props are like function arguments in JavaScript and attributes in HTML.\n",
+      "deckId": 3,
+      "id": 11
+    },
+    {
+      "front": "What is React State?",
+      "back": "React components have a built-in state object. The state object is where you store property values that belong to the component. When the state object changes, the component re-renders.\nAlways use the setState() method to change the state object, it will ensure that the component knows it's been updated.\n",
+      "deckId": 3,
+      "id": 12
+    },
+    {
+      "front": "What is React Router?",
+      "back": "React Router is a standard library for routing in React\nIt enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps the UI in sync with the URL.\n",
+      "deckId": 3,
+      "id": 13
+    },
+    {
+      "front": "What are params?",
+      "back": "Route params are parameters whose values are set dynamically in a page's URL\nAllows a route to render the same component while passing that component the dynamic portion of the URL, so that it can change its data based on the parameter.\n",
+      "deckId": 3,
+      "id": 14
+    },
+    {
+      "front": "What are routes?",
+      "back": "Routes specify the path to different components in a ReactJS application\nWhen a user clicks a link to a page or hits a button that redirects them, the router renders the matching <Route /> for that component.\n",
+      "deckId": 3,
+      "id": 15
+    },
+    {
+      "front": "asdasd",
+      "back": "asdasdasdasd",
+      "deckId": 1,
+      "id": 16
+    },
+    {
+      "front": "asfasdf",
+      "back": "asdasdasd",
+      "deckId": 1,
+      "id": 17
     }
   ]
 }

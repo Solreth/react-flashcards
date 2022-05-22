@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { readDeck, createCard } from "../utils/api/index";
 import { Link, useParams, useHistory } from "react-router-dom";
+import FormComponent from "./FormComponent";
 
-function AddCard({ deck, setDeck, decks, setDecks }) {
-  const initialData = {
-    front: "",
-    back: "",
-  };
+function AddCard({ deck, setDeck }) {
   const { deckId } = useParams();
-  const [formData, setFormData] = useState(initialData);
+
   const history = useHistory();
+
+  async function submitHandler(card) {
+    await createCard(deckId, card);
+  }
 
   useEffect(() => {
     const abort = new AbortController();
@@ -26,18 +27,6 @@ function AddCard({ deck, setDeck, decks, setDecks }) {
     return () => abort.abort();
   }, [deckId, setDeck]);
 
-  function submitHandler(event) {
-    event.preventDefault();
-    createCard(deckId, formData);
-    history.push(`/decks/${deckId}`);
-  }
-
-  console.log(formData);
-
-  function changeHandler({ target }) {
-    setFormData({ ...formData, [target.name]: target.value });
-  }
-
   return (
     <>
       <nav aria-label="breadcrumb">
@@ -50,43 +39,20 @@ function AddCard({ deck, setDeck, decks, setDecks }) {
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Create Deck
+            Create Card
           </li>
         </ol>
       </nav>
-      <form onSubmit={submitHandler} className="container">
-        <div className="row container">
-          <h1>{deck.name}:&nbsp;</h1>
-          <h1>Add Card</h1>
-        </div>
-        <h4 className="mt-3 mb-2">Front</h4>
-        <textarea
-          rows="4"
-          style={{ width: "100%" }}
-          type="text"
-          name="front"
-          placeholder="Front side of card"
-          value={formData.front}
-          onChange={changeHandler}
-        />
-
-        <h4 className="mt-3 mb-2">Back</h4>
-        <textarea
-          rows="4"
-          style={{ width: "100%" }}
-          type="text"
-          name="back"
-          placeholder="Back side of card"
-          value={formData.back}
-          onChange={changeHandler}
-        />
-        <Link to={`/decks/${deckId}`}>
-          <button className="btn btn-secondary my-2">Cancel</button>
-        </Link>
-        <button type="submit" className="btn btn-primary mx-2">
-          Submit
-        </button>
-      </form>
+      <div className="row container">
+        <h1>{deck.name}:&nbsp;</h1>
+        <h1>Add Card</h1>
+      </div>
+      <FormComponent
+        deckId={deckId}
+        history={history}
+        deck={deck}
+        submitHandler={submitHandler}
+      />
     </>
   );
 }

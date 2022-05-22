@@ -1,0 +1,51 @@
+import React, { useEffect, useState } from "react";
+
+export default function DeckForm({ cancelHandler, submitHandler, deck }) {
+  const [formData, setFormData] = useState(deck);
+
+  useEffect(() => {
+    setFormData(deck);
+  }, [deck]);
+
+  function changeHandler({ target }) {
+    setFormData({ ...formData, [target.name]: target.value });
+  }
+
+  function submit(event) {
+    event.preventDefault();
+    submitHandler(formData);
+    setFormData({});
+  }
+
+  return (
+    <form onSubmit={submit} className="container">
+      <h4 className="mt-3 mb-2">Front</h4>
+      <textarea
+        rows="4"
+        style={{ width: "100%" }}
+        type="text"
+        name="name"
+        placeholder="Deck Name"
+        value={formData?.name || ""}
+        onChange={changeHandler}
+      />
+
+      <h4 className="mt-3 mb-2">Back</h4>
+      <textarea
+        rows="4"
+        style={{ width: "100%" }}
+        type="text"
+        name="description"
+        placeholder="Brief description of the deck"
+        value={formData?.description || ""}
+        onChange={changeHandler}
+      />
+      <button onClick={cancelHandler} className="btn btn-secondary my-2">
+        Cancel
+      </button>
+      <button type="submit" className="btn btn-primary mx-2">
+        Submit
+      </button>
+    </form>
+  );
+}

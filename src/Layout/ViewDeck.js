@@ -11,7 +11,7 @@ function ViewDeck() {
 
   async function deleteDeckHandler(id) {
     const confirm = window.confirm(
-      "Are you sure you wish to release this deck? Its mother will never take it back."
+      "Are you sure you wish to release this deck? It's mother will never take it back."
     );
     if (confirm) {
       await deleteDeck(id);
