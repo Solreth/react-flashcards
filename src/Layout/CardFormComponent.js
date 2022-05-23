@@ -3,8 +3,8 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 export default function CardFormComponent({ deckId, submitHandler, card }) {
   const [formData, setFormData] = useState(card);
-  const { url, path } = useRouteMatch();
-  console.log(path, url);
+  const { url } = useRouteMatch();
+
   useEffect(() => {
     setFormData(card);
   }, [card]);
