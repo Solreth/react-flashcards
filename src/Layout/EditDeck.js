@@ -59,6 +59,7 @@ export default function EditDeck() {
             className="form-control"
             onChange={changeHandler}
             value={deck.name}
+            required
           />
         </div>
         <div className="form-group">
@@ -70,6 +71,7 @@ export default function EditDeck() {
             onChange={changeHandler}
             rows="4"
             value={deck.description}
+            required
           />
         </div>
         <button

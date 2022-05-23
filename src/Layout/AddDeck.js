@@ -81,6 +81,7 @@ function AddDeck() {
           name="name"
           style={{ width: "100%" }}
           value={formData.name}
+          required
           onChange={changeHandler}
         />
         <h4 className="mt-3 mb-2">Description</h4>
@@ -92,6 +93,7 @@ function AddDeck() {
           placeholder="Deck Description"
           value={formData.description}
           onChange={changeHandler}
+          required
         />
         <Link to="/">
           <button className="btn btn-secondary">Cancel</button>

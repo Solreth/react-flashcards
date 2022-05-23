@@ -30,6 +30,7 @@ export default function CardFormComponent({ deckId, submitHandler, card }) {
         placeholder="Front side of card"
         value={formData?.front || ""}
         onChange={changeHandler}
+        required
       />
 
       <h4 className="mt-3 mb-2">Back</h4>
@@ -41,6 +42,7 @@ export default function CardFormComponent({ deckId, submitHandler, card }) {
         placeholder="Back side of card"
         value={formData?.back || ""}
         onChange={changeHandler}
+        required
       />
       <Link to={`/decks/${deckId}`}>
         {url === `/decks/${deckId}/cards/new` && (
