@@ -16,7 +16,6 @@ function CardLayout({ card }) {
     }
   }
 
-  console.log("Card", card);
   return (
     <div className="card-body pb-2">
       <h5 className="card-title">{card.front}</h5>

@@ -20,7 +20,7 @@
     {
       "id": 1,
       "front": "Differentiate between Real DOM and Virtual DOM.",
-      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "back": "Virtual DOM updates are faster but do not directly update the HTML.",
       "deckId": 1
     },
     {
@@ -106,18 +106,6 @@
       "back": "Routes specify the path to different components in a ReactJS application\nWhen a user clicks a link to a page or hits a button that redirects them, the router renders the matching <Route /> for that component.\n",
       "deckId": 3,
       "id": 15
-    },
-    {
-      "front": "asdasd",
-      "back": "asdasdasdasd",
-      "deckId": 1,
-      "id": 16
-    },
-    {
-      "front": "asfasdf",
-      "back": "asdasdasd",
-      "deckId": 1,
-      "id": 17
     }
   ]
 }

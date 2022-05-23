@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { readCard, readDeck, updateCard } from "../utils/api/index";
-import FormComponent from "./FormComponent";
+import FormComponent from "./CardFormComponent";
 
 function EditCard() {
   const { deckId, cardId } = useParams();
-  console.log(useParams());
+
   const history = useHistory();
   const initialDeckData = {
     name: "",
@@ -39,13 +39,32 @@ function EditCard() {
 
   async function submitHandler(card) {
     const abortController = new AbortController();
-    const response = await updateCard(card, abortController.signal);
-    console.log("lalala", response);
-    history.push(`/decks/${deckId}`);
+    await updateCard(card, abortController.signal);
+    history.push(`/decks/${deck.id}`);
   }
 
   return (
-    <FormComponent submitHandler={submitHandler} card={card} deckId={deckId} />
+    <>
+      <div>
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+          </li>
+          <li className="breadcrumb-item active">Edit Card</li>
+        </ol>
+      </div>
+      <div className="row container">
+        <h1 className="container">Edit Card</h1>
+      </div>
+      <FormComponent
+        submitHandler={submitHandler}
+        card={card}
+        deckId={deckId}
+      />
+    </>
   );
 }
 export default EditCard;

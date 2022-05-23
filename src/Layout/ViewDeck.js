@@ -54,7 +54,7 @@ function ViewDeck() {
           <p className="card-text">{deck.description}</p>
           <div className="row navbar py-0">
             <div className="row gx-5">
-              <Link to={`/decks/${deck.id}`}>
+              <Link to={`/decks/${deck.id}/edit`}>
                 <button className="btn btn-secondary mx-1 ml-2">
                   <i className="bi bi-pencil" />
                   Edit

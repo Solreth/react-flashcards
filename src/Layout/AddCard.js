@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { readDeck, createCard } from "../utils/api/index";
 import { Link, useParams, useHistory } from "react-router-dom";
-import FormComponent from "./FormComponent";
+import CardFormComponent from "./CardFormComponent";
 
 function AddCard({ deck, setDeck }) {
   const { deckId } = useParams();
@@ -47,7 +47,7 @@ function AddCard({ deck, setDeck }) {
         <h1>{deck.name}:&nbsp;</h1>
         <h1>Add Card</h1>
       </div>
-      <FormComponent
+      <CardFormComponent
         deckId={deckId}
         history={history}
         deck={deck}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
-export default function FormComponent({ deckId, submitHandler, card }) {
+export default function CardFormComponent({ deckId, submitHandler, card }) {
   const [formData, setFormData] = useState(card);
-
+  const { url, path } = useRouteMatch();
+  console.log(path, url);
   useEffect(() => {
     setFormData(card);
   }, [card]);
@@ -42,11 +43,17 @@ export default function FormComponent({ deckId, submitHandler, card }) {
         onChange={changeHandler}
       />
       <Link to={`/decks/${deckId}`}>
-        <button className="btn btn-secondary my-2">Cancel</button>
+        {url === `/decks/${deckId}/cards/new` && (
+          <button className="btn btn-secondary my-2">Done</button>
+        )}
+        {card && <button className="btn btn-secondary my-2">Cancel</button>}
       </Link>
-      <button type="submit" className="btn btn-primary mx-2">
-        Submit
-      </button>
+      {url === `/decks/${deckId}/cards/new` && (
+        <button type="submit" className="btn btn-primary mx-2">
+          Save
+        </button>
+      )}
+      {card && <button className="btn btn-primary mx-2">Submit</button>}
     </form>
   );
 }

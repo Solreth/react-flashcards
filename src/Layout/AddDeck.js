@@ -56,8 +56,6 @@ function AddDeck() {
     setNewDeck(formData);
   }
 
-  console.log(formData);
-
   function changeHandler({ target }) {
     setFormData({ ...formData, [target.name]: target.value });
   }
