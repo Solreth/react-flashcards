@@ -3,7 +3,7 @@ import { readDeck, createCard } from "../utils/api/index";
 import { Link, useParams, useHistory } from "react-router-dom";
 import CardFormComponent from "./CardFormComponent";
 
-function AddCard({ deck, setDeck }) {
+export default function AddCard({ deck, setDeck }) {
   const { deckId } = useParams();
 
   const history = useHistory();
@@ -56,4 +56,3 @@ function AddCard({ deck, setDeck }) {
     </>
   );
 }
-export default AddCard;

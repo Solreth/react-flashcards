@@ -3,7 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { readCard, readDeck, updateCard } from "../utils/api/index";
 import FormComponent from "./CardFormComponent";
 
-function EditCard() {
+export default function EditCard() {
   const { deckId, cardId } = useParams();
 
   const history = useHistory();
@@ -67,4 +67,3 @@ function EditCard() {
     </>
   );
 }
-export default EditCard;

@@ -10,7 +10,7 @@ import AddCard from "./AddCard";
 import EditCard from "./EditCard";
 import EditDeck from "./EditDeck";
 
-function Layout() {
+export default function Layout() {
   const [decks, setDecks] = useState([]);
   const [deck, setDeck] = useState("");
 
@@ -48,5 +48,3 @@ function Layout() {
     </>
   );
 }
-
-export default Layout;

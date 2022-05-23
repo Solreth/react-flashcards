@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { readDeck } from "../utils/api/index";
 import { useParams, Link, useHistory } from "react-router-dom";
-function StudyDeck() {
+export default function StudyDeck() {
   const [deck, setDeck] = useState("");
   const [flip, setFlip] = useState(false);
   const [count, setCount] = useState(0);
@@ -132,4 +132,3 @@ function StudyDeck() {
     );
   }
 }
-export default StudyDeck;

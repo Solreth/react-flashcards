@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { deleteCard, readDeck } from "../utils/api/index";
 
-function CardLayout({ card }) {
+export default function CardLayout({ card }) {
   const { deckId } = useParams();
 
   async function deleteCardHandler(id) {
@@ -47,5 +47,3 @@ function CardLayout({ card }) {
     </div>
   );
 }
-
-export default CardLayout;

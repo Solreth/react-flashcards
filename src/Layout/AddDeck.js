@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { listDecks, createDeck } from "../utils/api/index";
 import { Link, useHistory } from "react-router-dom";
 
-function AddDeck() {
+export default function AddDeck() {
   const initialData = {
     name: "",
     description: "",
@@ -106,4 +106,3 @@ function AddDeck() {
     </>
   );
 }
-export default AddDeck;

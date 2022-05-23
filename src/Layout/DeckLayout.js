@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { listDecks, deleteDeck } from "../utils/api/index.js";
 
-function DeckLayout({ deck, setDecks }) {
+export default function DeckLayout({ deck, setDecks }) {
   async function deleteDeckHandler(id) {
     const confirm = window.confirm(
       "Are you sure you wish to release this deck? Its mother will never take it back."
@@ -46,5 +46,3 @@ function DeckLayout({ deck, setDecks }) {
     </div>
   );
 }
-
-export default DeckLayout;

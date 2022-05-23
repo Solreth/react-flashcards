@@ -3,7 +3,7 @@ import { useParams, Link, useHistory } from "react-router-dom";
 import CardLayout from "./CardLayout";
 import { readDeck, deleteDeck } from "../utils/api/index.js";
 
-function ViewDeck() {
+export default function ViewDeck() {
   const [deck, setDeck] = useState("");
 
   const { deckId } = useParams();
@@ -95,4 +95,3 @@ function ViewDeck() {
     );
   }
 }
-export default ViewDeck;

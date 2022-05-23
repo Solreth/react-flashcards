@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { listDecks } from "../utils/api/index";
 import DeckLayout from "./DeckLayout";
 
-function Home({ decks, setDecks }) {
+export default function Home({ decks, setDecks }) {
   useEffect(() => {
     const abort = new AbortController();
 
@@ -34,5 +34,3 @@ function Home({ decks, setDecks }) {
     </div>
   );
 }
-
-export default Home;
